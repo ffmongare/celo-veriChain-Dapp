@@ -2003,11 +2003,6 @@ aes-js@3.0.0:
   resolved "https://registry.yarnpkg.com/aes-js/-/aes-js-3.0.0.tgz#e21df10ad6c2053295bcbb8dab40b09dbea87e4d"
   integrity sha512-H7wUZRn8WpTq9jocdxQ2c8x2sKo9ZVmzfRE13GiNJXfp7NcKYEdvl3vspKjXox6RIG2VtaRe4JFvxG4rqp2Zuw==
 
-aes-ts@^0.0.0-alpha.0:
-  version "0.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/aes-ts/-/aes-ts-0.0.0-alpha.0.tgz#d3ddd38015c547f9efe0941a97484935be69dafb"
-  integrity sha512-0jNHgzxCXZETQsYMfzxmJ3plJfkX4kVzVJPNNqYNAONCRSxhucEJNe/XMOC+ozLJdZykWaRMrcv2hczmjytpUQ==
-
 agent-base@6, agent-base@^6.0.0, agent-base@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-6.0.2.tgz#49fff58577cfee3f37176feab4c22e00f86d7f77"
@@ -3161,13 +3156,6 @@ cross-env@^5.1.3:
   dependencies:
     cross-spawn "^6.0.5"
 
-cross-fetch@^3.1.5:
-  version "3.1.6"
-  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.6.tgz#bae05aa31a4da760969756318feeee6e70f15d6c"
-  integrity sha512-riRvo06crlE8HiqOwIpQhxwdOk4fOeR7FVM/wXoxchFEqMNUjvbs3bfo4OTgMEMHzppd4DxFBDbyySj8Cv781g==
-  dependencies:
-    node-fetch "^2.6.11"
-
 cross-spawn@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
@@ -3197,11 +3185,6 @@ crypto-random-string@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-2.0.0.tgz#ef2a7a966ec11083388369baa02ebead229b30d5"
   integrity sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==
-
-crypto@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/crypto/-/crypto-1.0.1.tgz#2af1b7cad8175d24c8a1b0778255794a21803037"
-  integrity sha512-VxBKmeNcqQdiUQUW2Tzq0t377b54N2bMtXO/qiLa+6eRRmmC4qT3D4OnTGoT/U6O9aklQ/jTwbOtRMTTY8G0Ig==
 
 css-color-keywords@^1.0.0:
   version "1.0.0"
@@ -3424,11 +3407,6 @@ doctrine@^3.0.0:
   integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
   dependencies:
     esutils "^2.0.2"
-
-dom-parser@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/dom-parser/-/dom-parser-0.1.6.tgz#696c633b535ab3291424eb5bf58ee426f64632ca"
-  integrity sha512-3nVRKbLEwmGfghLoeT1dxlK/0votalnOfasP+8VCHYDfDuCETY4LeMblfOeqww6XZk2ymZ1Uewy/hVad6Dy3yw==
 
 dot-prop@^5.2.0:
   version "5.3.0"
@@ -4260,7 +4238,7 @@ find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
-firebase-admin@^11.5.0, firebase-admin@^11.9.0:
+firebase-admin@^11.9.0:
   version "11.9.0"
   resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-11.9.0.tgz#43b6d7b23c303347d4dab7337e5abeb0a8499dc0"
   integrity sha512-My7qrInVZFmImX8aTulrp9kgY6d88Wn+ie8UIXKzZ3SJqQQhDwFT7Q3pgQXK9RfdsUtcxJJ3rCK7MWBm4GGtuw==
@@ -4277,25 +4255,10 @@ firebase-admin@^11.5.0, firebase-admin@^11.9.0:
     "@google-cloud/firestore" "^6.6.0"
     "@google-cloud/storage" "^6.9.5"
 
-firebase-function@^1.4.37:
-  version "1.4.37"
-  resolved "https://registry.yarnpkg.com/firebase-function/-/firebase-function-1.4.37.tgz#3a8d3b5c56c131643e003e10a80d11c57c99d4d2"
-  integrity sha512-/yc3arWkGlxXVcUC7iB6dXBmdihPUKM4+pHKTnDDNcIOKmmr6f26dvzrvtRvWvuyxKr9fjqkfh8G7kCPj90d8Q==
-  dependencies:
-    aes-ts "^0.0.0-alpha.0"
-    cross-fetch "^3.1.5"
-    crypto "^1.0.1"
-    dom-parser "^0.1.6"
-    firebase "^9.17.1"
-    firebase-admin "^11.5.0"
-    firebase-functions "^4.2.1"
-    flatted "^3.2.7"
-    sha512-crypt-ts "^0.1.27"
-
-firebase-functions@^4.2.1:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/firebase-functions/-/firebase-functions-4.4.0.tgz#ba228a64050fdb30393da1de236d9bdc6da89586"
-  integrity sha512-Vdkr9/y/UKQez//cPm2Iu/9CeayqQ2tQF6o3KXozDDBokK9AOlAalVHImCpKo6nWptT/ncZ8djJFk5cR8l+E+A==
+firebase-functions@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/firebase-functions/-/firebase-functions-4.4.1.tgz#209fa3a157476722382e71782fe3375b78a529ff"
+  integrity sha512-3no53Lg12ToNlPSgLZtAFLQAz6si7ilHvzO8NC3/2EybyUwegpj5YhHwNiCw839lmAWp3znjATJDTvADFiZMrg==
   dependencies:
     "@types/cors" "^2.8.5"
     "@types/express" "4.17.3"
@@ -4370,7 +4333,7 @@ firebase-tools@^12.3.1:
     winston-transport "^4.4.0"
     ws "^7.2.3"
 
-firebase@^9.17.1, firebase@^9.22.2:
+firebase@^9.22.2:
   version "9.22.2"
   resolved "https://registry.yarnpkg.com/firebase/-/firebase-9.22.2.tgz#8619bbdf38ab691d6b14da5d863370ab2c7ab6e5"
   integrity sha512-eBXsaTzXPx3Y0QhuuluG/qR58tlOx2X/W0GKNoF004FcG9L2gHuvGu5/bIczvrPyfNOCqDF+I5I/kOQi8l9m0A==
@@ -4415,7 +4378,7 @@ flat@^5.0.2:
   resolved "https://registry.yarnpkg.com/flat/-/flat-5.0.2.tgz#8ca6fe332069ffa9d324c327198c598259ceb241"
   integrity sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==
 
-flatted@^3.1.0, flatted@^3.2.7:
+flatted@^3.1.0:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
@@ -6607,7 +6570,7 @@ node-fetch@2.6.7:
   dependencies:
     whatwg-url "^5.0.0"
 
-node-fetch@^2.6.1, node-fetch@^2.6.11, node-fetch@^2.6.7:
+node-fetch@^2.6.1, node-fetch@^2.6.7:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.11.tgz#cde7fc71deef3131ef80a738919f999e6edfff25"
   integrity sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==
@@ -7829,11 +7792,6 @@ sha.js@^2.4.0, sha.js@^2.4.8:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
-
-sha512-crypt-ts@^0.1.27:
-  version "0.1.27"
-  resolved "https://registry.yarnpkg.com/sha512-crypt-ts/-/sha512-crypt-ts-0.1.27.tgz#f2a4eec171d032063a82815b1ac4bb5351e385ed"
-  integrity sha512-S/7vb0rJ3ZM6Y1oILqFXM+MGusE3f9SXlEB47qhkVZc2KneF1n6aHd0L1Grl3EKU8nJ44GXY69yRlWfbJXppZg==
 
 shallowequal@^1.1.0:
   version "1.1.0"
