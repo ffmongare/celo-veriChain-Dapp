@@ -42,7 +42,7 @@ menu.state('userMenu', {
     //"2": "startShipment",
     //"3": "completeShipment",
     //4: 'checkShipment',
-    //5: 'myAccount',
+    5: 'myAccount',
     //6: 'testfn',
     //7: 'connect',
   },
@@ -57,6 +57,7 @@ menu.state('setRecPhoneNo', {
   },
   next: {
     '*\\d+': 'setDistance',
+    5: 'myAccount',
   },
 })
 

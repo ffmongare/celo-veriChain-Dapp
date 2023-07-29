@@ -7,8 +7,17 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
 
+//Add states to menu
+const { obMenuStates } = require('./essentials/onboarding');
+const { accMenuStates } = require('./essentials/account');
+const { walMenuStates } = require('./wallet/index')
+
 menu.states = {
   ...menu.states,
+  ...obMenuStates,
+  ...accMenuStates,
+  ...walMenuStates,
+
 }
 
 console.log("This menu: ", menu.states)
