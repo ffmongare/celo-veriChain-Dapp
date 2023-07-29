@@ -3,7 +3,7 @@ const { config } = require('../blockchain/configs')
 const CELO = {
   symbol: 'CELO',
   name: 'CELO Token',
-  address: config.contractAddresses.CELOToken,
+  address: config.contractAddresses.CeloToken,
   decimals: 18,
   chainId: config.chainId,
   sortOrder: 10,
@@ -18,7 +18,7 @@ const cUSD = {
   sortOrder: 20,
 }
 
-const NativeTokens = [CELO, USXD]
+const NativeTokens = [CELO, cUSD]
 const StableTokens = [cUSD]
 
 const NativeTokensByAddress = {

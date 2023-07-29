@@ -9,7 +9,7 @@ menu.state('myAccount', {
       menu.con(
         name[0] +
           '. Choose option:' +
-          '\n1. Mini Statement' +
+          '\n1. Balance' +
           '\n2. Wallets' +
           '\n3. Add wallet' +
           '\n4. Change PIN' +
@@ -20,6 +20,7 @@ menu.state('myAccount', {
   },
   next: {
     0: 'userMenu',
+    1: 'getBalance',
     2: 'myWallets',
   },
 })

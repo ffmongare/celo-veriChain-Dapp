@@ -54,7 +54,7 @@ const getNativeBalance = async (address) => {
   const provider = getProvider()
   const balance = await provider.getBalance(address)
   return {
-    tokenAddress: config.contractAddresses.XDCToken,
+    tokenAddress: config.contractAddresses.CeloToken,
     value: utils.formatUnits(balance, 18),
   }
 }
@@ -136,7 +136,13 @@ const smartContractCall = async (contractName, args) => {
     }
 
     if (args.methodType === 'read') {
-      overrides = {}
+      const { gasPrice, gasLimit } = feeEstimate
+        
+      overrides = {
+        gasPrice,
+        gasLimit,
+        nonce: args.nonce ? args.nonce : currentNonce,
+      }
     } else if (args.methodType === 'write') {
       const { gasPrice, gasLimit } = feeEstimate
       overrides = {
@@ -158,7 +164,10 @@ const smartContractCall = async (contractName, args) => {
       )
       txReceipt = await sendTransaction(unsignedTx, feeEstimate)
     } else {
-      txReceipt = await contract?.[args.method](overrides)
+      const txReceipt1 = await contract?.[args.method](overrides)
+      console.log("txReceipt1", txReceipt1)
+      txReceipt = await txReceipt1.wait()
+      console.log("txReceipt", txReceipt)
     }
 
     return txReceipt

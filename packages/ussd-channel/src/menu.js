@@ -1,7 +1,13 @@
 const UssdMenu = require('ussd-builder');
 const { db } = require('./fbconfig');
 const { utils } = require('ethers');
-const { createThisShipment } = require('./shipment');
+
+const { isProviderSet, connectToProvider, getProvider } = require('./blockchain/provider')
+const { decryptDataWtoken } = require('./utils/encryption')
+const { Wallet } = require('ethers')
+const { setSigner, getSigner, isSignerSet } = require('./blockchain/signer')
+const logger = require('firebase-functions/logger')
+
 
 let menu = new UssdMenu();
 let sessions = {};
@@ -25,12 +31,43 @@ menu.sessionConfig({
 })
 
 menu.startState({
-  next:{
-    '' : () => {
-      return 'userMenu'
-    }
-    
-  }
+  next: {
+    '': async () => {
+      //check if user has an a wallet
+      let hasAccount = false
+      let userData = null
+      await db.ref(menu.args.phoneNumber).once('value', (data) => {
+        userData = data.val()
+        if (userData !== null) {
+          hasAccount = userData.userDetails.userToken && userData.wallets ? true : false
+        } else {
+          hasAccount = false
+        }
+      })
+      //functions.logger.info(ref.key === menu.args.phoneNumber);
+      if (hasAccount) {
+        //Check connection to provider and retry to connect
+        if (isProviderSet()) {
+          //create a signer
+          if (!isSignerSet(menu.args.phoneNumber)) {
+            const provider = getProvider()
+            const privateKey = await decryptDataWtoken(
+              userData.activeWallet.enPrivateKey,
+              userData.userDetails.userToken,
+            )
+            const signer = new Wallet(privateKey, provider)
+            setSigner(signer, menu.args.phoneNumber)
+          }
+          return 'userMenu'
+        } else {
+          await connectToProvider()
+          return 'userMenu'
+        }
+      } else {
+        return 'registerMenu'
+      }
+    },
+  },
 })
 
 menu.state('userMenu', {
@@ -41,66 +78,35 @@ menu.state('userMenu', {
     1: 'setRecPhoneNo',
     //"2": "startShipment",
     //"3": "completeShipment",
-    //4: 'checkShipment',
+    4: 'checkShipment',
     5: 'myAccount',
-    //6: 'testfn',
-    //7: 'connect',
+    6: 'testfn', 
+    7: 'connect',
   },
 })
 
-//@dev pickup time and pricing will be set automatically based on distance. 
-// default will +24hrs of shipment creation and price of 3cUSD/Ks 300
-menu.state('setRecPhoneNo', {
+menu.state('registerMenu', {
   run: () => {
-    menu.session.set('details', ' ')
-    menu.con('Enter Receiver Phone Number:')
+    menu.session.set('mnemonic', ' ')
+    menu.con('Welcome. Choose option:' + '\n1. Create an Account' + '\n2. Import an Account')
   },
   next: {
-    '*\\d+': 'setDistance',
-    5: 'myAccount',
+    1: 'registration',
+    2: 'importation',
+    3: 'testfn',
   },
 })
 
-menu.state('setDistance', {
-  run: () => {
-    let recPhoneNo = menu.val;
-    menu.session.set('details', recPhoneNo)
-    menu.con('Enter Shipment Distance:') //Change to towns 
-  },
-  next: {
-    '*\\d+': 'confirmDetails',
-  },
-})
-
-menu.state('confirmDetails', {
+menu.state('connect', {
   run: async () => {
-    const distance = menu.val;
-    const recPhoneNo = await menu.session.get('details');
-    menu.session.set('details', recPhoneNo +" "+ distance)
-    menu.con("Your Details:" + 
-            "\nReceiver: " + recPhoneNo + 
-            "\nDistance: " + distance +"km" +
-            "\n1. Continue" +
-            "\n2. Edit");
-  },
-  next: {
-    1: 'createShipment',
-    2: "setRecPhoneNo",
-  },
-})
-
-menu.state("createShipment", {
-  run: async () => {
-    const details = await menu.session.get('details')
-    const thisDetails = details.split(" ")
-    menu.end('Shipment Created Successfully!')
-    /*const results = await createThisShipment(details[0], details[1])
-    if (results) {
-      menu.end('Shipment Created Successfully!')
+    await connectToProvider()
+    if (isProviderSet()) {
+      menu.end('Provider is Connected')
     } else {
-      menu.end('Transaction Failed!')
-    }*/
+      menu.end('Connection Failed')
+    }
   },
 })
+
 
 module.exports = { menu }

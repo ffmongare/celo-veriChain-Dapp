@@ -2,8 +2,8 @@ const { Contract, utils } = require('ethers')
 const { Erc20Abi } = require('./Abis/erc20')
 const { Erc721Abi } = require('./Abis/erc721')
 const { CeloTokenAbi } = require('./Abis/celoToken')
-//const { StableTokenAbi } = require('./Abis/stableToken')
-const { VeriChainAbi } = require('./Abis/veriChain')  
+const { StableTokenAbi } = require('./Abis/stableToken')
+const  VeriChainAbi  = require('./Abis/Jsons/SupplyChainTracking.json')  
 const { getSigner } = require('./signer')
 const { config } = require('./configs')
 const { areAddressesEqual, normalizeAddress } = require('../utils/addresses')
@@ -59,11 +59,11 @@ function getTokenContract(tokenAddress, abi) {
 
 function getContractAbi(c) {
   switch (c) {
-    case 'CeloTokenAbi':
+    case 'CeloToken':
       return CeloTokenAbi
     case 'StableToken':
       return StableTokenAbi
-    case 'VeriChainAbi':
+    case 'VeriChain':
       return VeriChainAbi
     default:
       throw new Error(`No ABI for contract ${c}`)
